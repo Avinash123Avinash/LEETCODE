@@ -2,10 +2,7 @@ class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
         int n=nums.size();
-        if(k>n)
-        {
            k=k%n;
-        }
         vector<int>ans(n,0);
         stack<int>st;
        for(int i=0;i<k;i++)
