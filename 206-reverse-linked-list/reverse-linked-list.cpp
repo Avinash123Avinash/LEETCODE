@@ -12,6 +12,8 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         stack<int>st;
+        if(head==NULL || head->next==NULL)
+        return head;
         ListNode* temp=head;
         while(temp!=NULL)
         {
