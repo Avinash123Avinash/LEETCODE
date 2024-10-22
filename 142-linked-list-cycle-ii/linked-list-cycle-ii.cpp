@@ -9,8 +9,8 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        //  if(head==NULL and head->next==NULL)
-        //  return head;
+         if(head==NULL || head->next==NULL)
+         return NULL;
          
          ListNode * temp=head;
          map<ListNode *,int>hashnet;
