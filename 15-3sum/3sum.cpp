@@ -13,15 +13,19 @@ public:
         while(j<k)
         {
             int sum=nums[i]+nums[j]+nums[k];
+       
             if(sum==0)
             {
              vector<int>temp={nums[i],nums[j],nums[k]};
              st.insert(temp);
              j++;
              k--;
+             while(j<k and nums[j]==nums[j-1])j++;
+             while( j<k and nums[k]==nums[k+1])k--;
             }
             else if(sum<0)
             {
+                
                 j++;
             }
             else
