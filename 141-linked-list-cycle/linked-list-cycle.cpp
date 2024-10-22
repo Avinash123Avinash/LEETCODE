@@ -9,22 +9,17 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        if(head==NULL || head->next==NULL)
-        return false;
-        ListNode * temp=head;
-        map<ListNode *,int>hashnet;
+        // if(head==NULL || head->next==NULL)
+        // return false;
+        ListNode *slow=head;
+         ListNode *fast=head;
        
-        while(temp!=NULL)
+        while( fast!=NULL and fast->next!=nullptr )
         {
-            //  hashnet.insert(temp);
-            // temp=temp->next;
-            if(hashnet[temp]==1)
-            {
-                return true;
-            }
-            hashnet[temp]=1;
-            temp=temp->next;
-
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast)
+            return true;
         }
         return false;
     }
