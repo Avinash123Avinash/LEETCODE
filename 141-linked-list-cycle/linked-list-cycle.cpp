@@ -12,16 +12,18 @@ public:
         if(head==NULL || head->next==NULL)
         return false;
         ListNode * temp=head;
-        set<ListNode *>hashnet;
+        map<ListNode *,int>hashnet;
        
-        while(temp->next!=NULL)
+        while(temp!=NULL)
         {
-             hashnet.insert(temp);
-            temp=temp->next;
-            if(hashnet.find(temp->next)!=hashnet.end())
+            //  hashnet.insert(temp);
+            // temp=temp->next;
+            if(hashnet[temp]==1)
             {
                 return true;
             }
+            hashnet[temp]=1;
+            temp=temp->next;
 
         }
         return false;
