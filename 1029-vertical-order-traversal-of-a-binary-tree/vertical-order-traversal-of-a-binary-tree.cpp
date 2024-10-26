@@ -16,9 +16,9 @@ public:
         queue<pair<TreeNode*, pair<int, int>>> q;
         map<int, map<int, multiset<int>>> mpp;
         q.push({root, {0, 0}});
-        TreeNode* temp1 = root;
         while (!q.empty()) {
-
+ for(int i=0;i<q.size();i++)
+ {
             TreeNode* temp = q.front().first;
             int ver = q.front().second.first;
             int lev = q.front().second.second;
@@ -31,10 +31,9 @@ public:
                 q.push({temp->right, {ver + 1, lev + 1}});
             }
         }
+        }
         vector<vector<int>> ans;
-
         for (auto it : mpp) {
-
             vector<int> col;
             for (auto p : it.second) {
                 col.insert(col.end(), p.second.begin(), p.second.end());
