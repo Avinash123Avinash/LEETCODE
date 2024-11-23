@@ -6,7 +6,7 @@ public:
         int f=1;
         int l=piles[n-1];
         long long total;
-          int ans=0;
+        //   int ans=0;
         while(f<=l)
         {
             int mid=(f+l)/2;
@@ -20,7 +20,7 @@ public:
             }
             if(total<=h)
             {
-               ans=mid;
+            //    ans=mid;
                l=mid-1;
             }
             else
@@ -30,6 +30,6 @@ public:
 
 
         }
-        return ans;
+        return f;
     }
 };
