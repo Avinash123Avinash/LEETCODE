@@ -2,7 +2,6 @@ class Solution {
 public:
     bool possible(vector<int>& weights, int days, int num) {
         int sum = 0;
-        int sumt = 0;
         int cnt = 1;
         // int j = 0;
         for (int i = 0; i < weights.size(); i++) {
@@ -28,7 +27,7 @@ public:
           total+=weights[i];
           maxi=max(maxi,weights[i]);
         }
-        int mini = INT_MAX;
+     
         int low=maxi;
         int high=total;
        while(low<=high) {
