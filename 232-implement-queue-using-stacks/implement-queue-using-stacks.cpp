@@ -7,14 +7,13 @@ stack<int>st2;
     }
     
     void push(int x) {
-        int n1=st1.size();
-        while(!st1.empty())
+     while(!st1.empty())
         {
             st2.push(st1.top());
             st1.pop();
         }
           st1.push(x);
-        while(!st2.empty())
+      while(!st2.empty())
         {
             st1.push(st2.top());
             st2.pop();
@@ -25,10 +24,9 @@ stack<int>st2;
     }
     
     int pop() {
-      
-        int x=st1.top();
+        int n=st1.top();
         st1.pop();
-        return x;
+        return n;
     }
     
     int peek() {
