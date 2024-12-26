@@ -25,10 +25,7 @@ stack<int>st2;
     }
     
     int pop() {
-        if(st1.empty())
-        {
-            return -1;
-        }
+      
         int x=st1.top();
         st1.pop();
         return x;
