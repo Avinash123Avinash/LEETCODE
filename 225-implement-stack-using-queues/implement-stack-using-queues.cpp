@@ -2,8 +2,6 @@ class MyStack {
 public:
 queue<int>q1;
     MyStack() {
-        
-        // queue<int>q2;
 
     }
     
@@ -30,9 +28,7 @@ queue<int>q1;
     }
     
     bool empty() {
-        if(!q1.size())
-        return true;
-        return false;
+       return q1.empty();
     }
 };
 
