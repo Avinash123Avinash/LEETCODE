@@ -21,7 +21,7 @@ public:
     }
     // for check the leading zero
     int i=0;
-    while(ans[i]=='0')
+    while( i<ans.size() and ans[i]=='0')
     {
         i++;
     }
