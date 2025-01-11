@@ -4,12 +4,12 @@ public:
         int n=nums.size();
         for(int i=0;i<n;i++)
         {
-            for(int j=i;j<n;j++)
+            int j=n-1;
+            while(i<j)
             {
-                if(nums[j]<nums[i])
-                {
-                    swap(nums[i],nums[j]);
-                }
+                if(nums[i]>nums[j])
+                swap(nums[i],nums[j]);
+                j--;
             }
         }
     }
