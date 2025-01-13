@@ -16,15 +16,16 @@ public:
         {
             if(nums[i]!=0)
             {
-            ans.push_back(nums[i]);
+            nums[cnt]=nums[i];
             cnt++;
             }
         }
         for(int i=cnt;i<n;i++)
         {
-            ans.push_back(0);
+           nums[cnt]=0;
+           cnt++;
         }
        
-        return ans;
+        return nums;
     }
 };
