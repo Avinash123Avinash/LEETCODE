@@ -17,10 +17,7 @@ public:
         {
             int m=q.top().first;
             char ch=q.top().second;
-            for(int i=0;i<m;i++)
-            {
-                ans+=ch;
-            }
+          ans.append(m,ch);
             q.pop();
         }
         return ans;
