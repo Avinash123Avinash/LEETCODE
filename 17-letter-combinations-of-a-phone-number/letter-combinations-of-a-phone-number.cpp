@@ -11,9 +11,9 @@ void f(string& digits,string&temp,vector<string>&ans,int i,map<char,string>&mpp)
     {
         string temp1=mpp[digits[i]];
         temp+=temp1[j];
+         cout<<temp<<endl;
          f(digits,temp,ans,i+1,mpp);
          temp.pop_back();
-        //    f(digits,temp,ans,i+1,mpp);
     }
 }
     vector<string> letterCombinations(string digits) {
@@ -25,10 +25,12 @@ void f(string& digits,string&temp,vector<string>&ans,int i,map<char,string>&mpp)
      };
      string temp;
      vector<string>ans;
-     for(int i=0;i<n;i++)
+     if(digits.size()==0)
      {
-        f(digits,temp,ans,i,mpp);
+        return ans;
      }
+        f(digits,temp,ans,0,mpp);
+     
 
    return ans;
     
