@@ -13,7 +13,7 @@ void f(string& digits,string&temp,vector<string>&ans,int i,map<char,string>&mpp)
         temp+=temp1[j];
          f(digits,temp,ans,i+1,mpp);
          temp.pop_back();
-           f(digits,temp,ans,i+1,mpp);
+        //    f(digits,temp,ans,i+1,mpp);
     }
 }
     vector<string> letterCombinations(string digits) {
