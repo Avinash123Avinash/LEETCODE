@@ -10,7 +10,7 @@ public:
         {
           if(nums[j]%2!=0)
           k--;
-         while(k<0)
+         while(i<=j and k<0)
          {
             if(nums[i]%2!=0)
             k++;
