@@ -1,23 +1,28 @@
 class Solution {
 public:
+// here we can use the monotonic stack because here we can maintain the order of the element in the simple one order (decreasing) which called the monotonic stacj
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-       int n=nums1.size();
-       int m=nums2.size();
-    stack<int>s;
-    unordered_map<int,int>mpp;
-    for(int i=0;i<m;i++)
-    {
-        while(!s.empty() and s.top()<nums2[i])
+
+        int n=nums2.size();
+                vector<int>temp;
+        stack<int>st;
+        map<int,int>mpp;
+        for(int i=n-1;i>=0;i--)
         {
-          mpp[s.top()]=nums2[i];
-          s.pop();
+          while(!st.empty() and st.top()<=nums2[i])
+          {
+            st.pop();
+          }
+          if(st.size()==0)
+          mpp[nums2[i]]=-1;
+          else
+        mpp[nums2[i]]=st.top();
+          st.push(nums2[i]);
         }
-        s.push(nums2[i]);
-    }
-    for(int i=0;i<n;i++)
-    {
-        nums1[i]=mpp[nums1[i]]?mpp[nums1[i]]:-1;
-    }
-    return nums1;
+        for(int i=0;i<nums1.size();i++)
+        {
+            temp.push_back(mpp[nums1[i]]);
+        }
+        return temp;
     }
 };
