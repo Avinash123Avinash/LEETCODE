@@ -1,25 +1,25 @@
 class Solution {
 public:
-bool check(int n,const string& sq,int ind=0,int sum1=0)
+bool check(int n,const string& squr,int ind=0,int sum1=0)
 {
-    if(ind==sq.size())
+    if(ind==squr.size())
     return sum1==n;
     int num=0;
-   for(int i=ind;i<sq.size();i++)
-   {
-    num=num*10+(sq[i]-'0');
-    if(sum1+num>n)break;
-    if(check(n,sq,i+1,sum1+num))return true;
-   }
+    for(int i=ind;i<squr.size();i++)
+    {
+        num=num*10+(squr[i]-'0');
+        if(sum1+num>n)break;
+        if(check(n,squr,i+1,sum1+num))return true;
+    }
     return false;
 }
     int punishmentNumber(int n) {
         int sum=0;
-        for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++)
         {
-            int sq=i*i;
-            if(check(i,to_string(sq)))
-            sum+=sq;
+            int squr=j*j;
+            if(check(j,to_string(squr)))
+            sum+=squr;
         }
         return sum;
     }
