@@ -9,7 +9,9 @@ int solve(string s, int k)
         map<int,int>mpp;
         while(j<n)
         {
+            // here is the condition and calculation part
           mpp[s[j]]++;
+        //   here is the elimination part
           while(i<=j and mpp.size()>k)
           {
             mpp[s[i]]--;
@@ -17,6 +19,7 @@ int solve(string s, int k)
             mpp.erase(s[i]);
             i++;
           }
+        //   here is the final calculation part
           cnt+=j-i+1;
           j++;
         }
