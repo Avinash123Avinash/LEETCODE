@@ -11,7 +11,6 @@ public:
             else if(nums[i]<0)
             negcnt++;
         }
-        int maxi=max(poscnt,negcnt);
-        return maxi;
+        return max(poscnt,negcnt);
     }
 };
