@@ -1,6 +1,7 @@
 class Solution {
 public:
     int ladderLength(string begin, string end, vector<string>& arr) {
+        // use the set insted of the map for erase the element easily
         unordered_set<string>mpp(arr.begin(),arr.end());
         int n=arr.size();
         if(mpp.find(end)==mpp.end())
@@ -8,7 +9,7 @@ public:
 
         queue<pair<string,int>>q;
         q.push({begin,1});
-        mpp.erase(begin);
+        // mpp.erase(begin);
         while(!q.empty() )
         {
             auto [word,step]=q.front();
