@@ -1,28 +1,31 @@
 class Solution {
 public:
     int minimumIndex(vector<int>& nums) {
-        unordered_map<int, int> firstMap, secondMap;
-        int n = nums.size();
-
-        // Add all elements of nums to second half
-        for (auto& num : nums) {
-            secondMap[num]++;
+        int n=nums.size();
+        map<int,int>mpp;
+        map<int,int>mpp1;
+        for(int i=0;i<n;i++)
+        {
+            mpp[nums[i]]++;
         }
-
-        for (int index = 0; index < n; index++) {
-            // Create split at current index
-            int num = nums[index];
-            secondMap[num]--;
-            firstMap[num]++;
-
-            // Check if valid split
-            if (firstMap[num] * 2 > index + 1 &&
-                secondMap[num] * 2 > n - index - 1) {
-                return index;
-            }
+        int dom=0;
+        for(auto it:mpp)
+        {
+            if(it.second>(n/2))
+            dom=it.first;
         }
-
-        // No valid split exists
-        return -1;
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]==dom)
+            sum++;
+            mpp[i]=sum;
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(mpp[i]*2>i+1 and (mpp[n-1]-mpp[i])*2>n-1-i)
+            return i;
+        }
+         return -1;
     }
 };
