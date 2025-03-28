@@ -19,11 +19,11 @@ public:
         {
             if(nums[i]==dom)
             sum++;
-            mpp[i]=sum;
+            mpp1[i]=sum;
         }
         for(int i=0;i<n;i++)
         {
-            if(mpp[i]*2>i+1 and (mpp[n-1]-mpp[i])*2>n-1-i)
+            if(mpp1[i]*2>i+1 and (mpp1[n-1]-mpp1[i])*2>n-1-i)
             return i;
         }
          return -1;
