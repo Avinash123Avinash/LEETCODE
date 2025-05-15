@@ -11,7 +11,7 @@ public:
         ans.push_back(words[0]);
          for(int i=1;i<n;i++)
          {
-            if(groups[mpp[ans.back()]]!=groups[i])
+            if(groups[i-1]!=groups[i])
             ans.push_back(words[i]);
          }
          return ans;
