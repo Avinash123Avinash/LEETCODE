@@ -1,72 +1,57 @@
-class disjointset
-{
-    vector<int>parent,size;
-    public:
-    disjointset(int n)
-    {
-        size.resize(n+1);
-        parent.resize(n+1);
-        for(int i=0;i<=n;i++)
-        {
-            parent[i]=i;
-            size[i]=1;
-        }
-    }
-int find(int X)
-{
-      if(X==parent[X])
-      return X;
-      return parent[X]=find(parent[X]);
-       
-}
-void unionSet(int X,int Z)
-{
-       
-      int upX=find(X);
-      int upZ=find(Z);
-      if(upX==upZ)return;
-      if(size[X]>size[Z])
-      {
-          parent[upZ]=upX;
-          size[upX]+=size[upZ];
-      }
-     
-      else
-      {
-          parent[upX]=upZ;
-          size[upZ]+=size[upX];
-      }
-}
-
-};
 class Solution {
 public:
-    int makeConnected(int n, vector<vector<int>>& adj) {
-          // code here
-       disjointset ds(n);
-       int m=adj.size();
-       int extra=0;
-       for(int i=0;i<m;i++)
-       {
-        if(ds.find(adj[i][0])==ds.find(adj[i][1]))
-        extra++;
-        else
-        {
-            ds.unionSet(adj[i][0],adj[i][1]);
+class Disjoint
+{
+public:
+    vector<int> rank;
+    vector<int> parent;
+    Disjoint(int n) {
+        rank.resize(n + 1, 0);
+         parent.resize(n + 1, 0);
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
         }
-       }
-
-       int com=0;
-       for(int i=0;i<n;i++)
-       {
-        if(ds.find(i)==i)
-        com++;
-       }
-       if(extra<(com-1))
-       return -1;
-       else
-       return com-1;
-    
-    
+    }
+    int findparent(int node) {
+        if (node == parent[node])
+            return node;
+        return parent[node] = findparent(parent[node]);
+    }
+    void unionByrank(int u, int v) {
+        int ulp_u = findparent(u);
+        int ulp_v = findparent(v);
+        if (ulp_u == ulp_v)
+            return;
+        if (rank[ulp_u] < rank[ulp_v])
+            parent[ulp_u] = ulp_v;
+        else if (rank[ulp_u] > rank[ulp_v])
+            parent[ulp_v] = ulp_u;
+        else {
+            parent[ulp_v] = ulp_u;
+            rank[ulp_u]++;
+        }
+    }
+};
+    int makeConnected(int n, vector<vector<int>>& arr) {
+        Disjoint ds(n);
+         int edge=0; 
+        for(auto it:arr)
+        {
+           int u=it[0];
+           int v=it[1];
+           if(ds.findparent(u)==ds.findparent(v))
+           edge++;
+           else
+           {
+             ds.unionByrank(u,v);
+           }
+        }
+        int cnt=0;
+        for(int i=0;i<n;i++)
+        {
+            if(ds.findparent(i)==i)
+            cnt++;
+        }
+        return edge>=cnt-1?cnt-1:-1;
     }
 };
