@@ -1,42 +1,29 @@
 class Solution {
 public:
-bool isSubsetsum(vector<int>&nums,int sum,int n)
+bool f(int ind,int k,vector<int>&nums,vector<vector<int>>&dp)
 {
-    int dp[n+1][sum+1];
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<sum+1;j++)
-        {
-            if(i==0)
-            dp[i][j]=false;
-            if(j==0)
-            dp[i][j]=true;
-        }
-    }
-    for(int i=1;i<n+1;i++)
-    {
-        for(int j=1;j<sum+1;j++)
-        {
-            if(nums[i-1]<=j)
-            dp[i][j]=dp[i-1][j-nums[i-1]] || dp[i-1][j];
-            else
-            dp[i][j]=dp[i-1][j];
-        }
-    }
-    return dp[n][sum];
+    if(k==0) return true;
+    if(ind==0) return nums[0]==k;
+    if(dp[ind][k]!=-1)
+    return dp[ind][k];
+      bool taken =false;
+      
+    if(nums[ind]<=k)
+     taken = f(ind-1,k-nums[ind],nums,dp);
+     bool nottaken=f(ind-1,k,nums,dp);
+     return dp[ind][k]= taken||nottaken;
 }
     bool canPartition(vector<int>& nums) {
+        int sum=0;
         int n=nums.size();
-        long long sum=0;
-        if(n==1)
-        return false;
+        
         for(int i=0;i<n;i++)
         {
-            sum=sum+nums[i];
+            sum+=nums[i];
         }
-        if(sum%2!=0)
-        return false;
-        else
-          return isSubsetsum(nums,sum/2,n);
+        int l=sum/2;
+        vector<vector<int>>dp(n+1,vector<int>(l+1,-1));
+      return sum%2!=0?false:f(n-1,sum/2,nums,dp);
+        
     }
 };
