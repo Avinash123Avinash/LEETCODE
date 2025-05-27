@@ -25,9 +25,10 @@ bool f(int n,int sum,vector<int>&nums)
     dp[0][nums[0]]=true;
     
 //   =false;
+bool taken=false;
     for(int i=1;i<n+1;i++)
     {
-        bool taken=false;
+        
         for(int j=1;j<sum+1;j++)
         {
             if(nums[i-1]<=j)
