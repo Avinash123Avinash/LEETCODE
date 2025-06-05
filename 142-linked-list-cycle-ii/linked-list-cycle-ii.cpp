@@ -9,24 +9,24 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-         if(head==NULL || head->next==NULL)
-         return NULL;
-         
-         ListNode * temp=head;
-         map<ListNode *,int>hashnet;
-       
-        while(temp!=NULL)
+        if(head==nullptr || head->next==nullptr)
+        return 0;
+        map<ListNode*,int>mpp;
+        mpp[head]=0;
+        int cnt=0;
+    ListNode*slow=head;
+    // ListNode*fast=head;
+    while(slow!=nullptr)
+    {
+        slow=slow->next;
+        cnt++;
+        // fast=fast->next->next;
+        if(mpp.find(slow)!=mpp.end())
         {
-            //  hashnet.insert(temp);
-            // temp=temp->next;
-            if(hashnet[temp]==1)
-            {
-                return temp;
-            }
-            hashnet[temp]=1;
-            temp=temp->next;
+        return slow;
+        }
+        mpp[slow]=cnt;
     }
-    return temp;
+    return 0;
     }
-
 };
