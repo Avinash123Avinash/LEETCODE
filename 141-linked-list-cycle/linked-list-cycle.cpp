@@ -9,18 +9,17 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        // if(head==NULL || head->next==NULL)
-        // return false;
-        ListNode *slow=head;
-         ListNode *fast=head;
-       
-        while( fast!=NULL and fast->next!=nullptr )
+        map<ListNode*,int>mpp;
+        ListNode*temp=head;
+        mpp[head]=1;
+        while(temp!=nullptr)
         {
-            slow=slow->next;
-            fast=fast->next->next;
-            if(slow==fast)
+            
+            temp=temp->next;
+            if(mpp.find(temp)!=mpp.end())
             return true;
+            mpp[temp]=1;
         }
-        return false;
+return false;
     }
 };
