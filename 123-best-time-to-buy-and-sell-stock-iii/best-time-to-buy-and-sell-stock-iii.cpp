@@ -9,13 +9,13 @@ int f(int ind,int buy,vector<int>&prices,int cnt,vector<vector<vector<int>>>&dp)
 int profit=0;
     if(buy)
     {
-     profit=max((-prices[ind]+f(ind+1,0,prices,cnt,dp)),(f(ind+1,1,prices,cnt,dp)));
+    return  dp[ind][buy][cnt]=max((-prices[ind]+f(ind+1,0,prices,cnt,dp)),(f(ind+1,1,prices,cnt,dp)));
     }
     else
     {
-        profit=max((prices[ind]+f(ind+1,1,prices,cnt+1,dp)),(f(ind+1,0,prices,cnt,dp)));
+     return dp[ind][buy][cnt]=max((prices[ind]+f(ind+1,1,prices,cnt+1,dp)),(f(ind+1,0,prices,cnt,dp)));
     }
-     return dp[ind][buy][cnt]=profit;
+     return dp[ind][buy][cnt];
 }
     int maxProfit(vector<int>& prices) {
         int n=prices.size();
