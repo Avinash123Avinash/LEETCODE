@@ -13,6 +13,7 @@ public:
             if(mpp.find(k)!=mpp.end() and mpp[k]!=i)
             return {i,mpp[k]};
         }
-        return {-1};
+        return {-1,-1};
+        
     }
 };
