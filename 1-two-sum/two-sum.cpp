@@ -5,13 +5,10 @@ public:
         map<int,int>mpp;
         for(int i=0;i<n;i++)
         {
-            mpp[nums[i]]=i;
-        }
-        for(int i=0;i<n;i++)
-        {
             int k=target-nums[i];
-            if(mpp.find(k)!=mpp.end() and mpp[k]!=i)
+            if(mpp.find(k)!=mpp.end())
             return {i,mpp[k]};
+            mpp[nums[i]]=i;
         }
         return {-1,-1};
         
