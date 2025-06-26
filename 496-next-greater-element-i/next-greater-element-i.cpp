@@ -4,26 +4,20 @@ public:
         vector<int>ans;
         map<int,int>mpp;
         int n=nums2.size();
+        stack<int>st;
         for(int i=0;i<n;i++)
         {
-            mpp[nums2[i]]=i;
+           while(!st.empty() and nums2[i]>st.top())
+           {
+            mpp[st.top()]=nums2[i];
+            st.pop();
+           }
+           st.push(nums2[i]);
         }
-        int flag;
-        for(int i=0;i<nums1.size();i++)
-        {
-            int k=mpp[nums1[i]];
-            int l=nums1[i];
-            flag=0;
-            for(int j=k+1;j<n;j++)
-            {
-                if(nums2[j]>l)
-                {
-                    ans.push_back(nums2[j]);
-                    flag=1;
-                    break;
-                }
-            }
-            if(!flag)
+        for(int i=0;i<nums1.size();i++){
+            if(mpp.find(nums1[i])!=mpp.end())
+            ans.push_back(mpp[nums1[i]]);
+            else
             ans.push_back(-1);
         }
         return ans;
