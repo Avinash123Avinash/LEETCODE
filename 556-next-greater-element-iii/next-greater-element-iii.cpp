@@ -11,8 +11,8 @@ public:
         }
         reverse(ans.begin(),ans.end());
         int m=ans.size();
-        if(m==1)
-        return -1;
+        // if(m==1)
+        // return -1;
         int l=-1;
     for(int i=m-2;i>=0;i--)
     {
