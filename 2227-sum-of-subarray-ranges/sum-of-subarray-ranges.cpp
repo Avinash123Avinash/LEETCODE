@@ -55,7 +55,7 @@ vector<int>findpse(vector<int>&arr)
        {
         int r=nse[i]-i;
         int l=i-pse[i];
-    sum=sum+(l*1l*r*1ll*arr[i]);
+    sum=sum+(l*1ll*r*1ll*arr[i]);
        }
        return sum;
     }
