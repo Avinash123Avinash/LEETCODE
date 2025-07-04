@@ -1,30 +1,18 @@
 class Solution {
 public:
-
-    bool isPowerOfTwo(int num) {
-        if(num==0)
-        return false;
-        if(num<0)
-        return false;
-    string res="";
-        while(num!=1)
-        {
-            if(num%2==0) 
-            res+='0';
-            else
-              res+='1';
-            num=num/2;
-        }
-        res+='1';
-        int cnt=0;
-        for(int i=0;i<res.length();i++)
-        {
-            if(res[i]=='1')
-            cnt++;
-        }
-        if(cnt==1)
+    bool isPowerOfTwo(int n) {
+        if(n==1)
         return true;
+        if(n==0 || n<0)
         return false;
-     
+       while(n>1)
+       {
+        if(n%2!=0 and n!=1)
+        return false;
+
+            n=(n/2);
+
+       }
+        return true;
     }
 };
