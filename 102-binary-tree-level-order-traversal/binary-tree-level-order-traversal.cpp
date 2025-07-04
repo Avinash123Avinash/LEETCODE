@@ -6,57 +6,36 @@
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
- * right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
 class Solution {
 public:
-    // void f(TreeNode*root,vector<vector<int>>&level,vector<int>&temp)
-    // {
-    //     queue<TreeNode*>q;
-    //     if(root==NULL)
-    //     {
-    //         return;
-    //     }
-
-    //     while(!q.empty())
-    //     {
-    //         TreeNode*current=q.front();
-    //         q.pop();
-    //         if(current->left!=NULL)
-    //         {
-    //             f(current->left,level,temp);
-    //         }
-    //         else if(current->right!=NULL)
-    //         {
-    //             f(current->right,level,temp);
-    //         }
-    //          temp.push_back(current->val);
-    //     }
-    //      level.push_back(temp);
-    //      return;
-    // }
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> level;
-        if (root == NULL)
-            return level;
-        queue<TreeNode*> q;
-        q.push(root);
-        while (!q.empty()) {
-            int levelSize = q.size();
-            vector<int> temp;
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode* current = q.front();
-                q.pop();
-                if (current->left != NULL)
-                    q.push(current->left);
-                if (current->right != NULL)
-                    q.push(current->right);
-                temp.push_back(current->val);
+    vector<vector<int>> levelOrder(TreeNode* root)
+    {
+        queue<pair<TreeNode*,int>>q;
+        q.push({root,1});
+        vector<vector<int>>ans;
+        if(root==nullptr)
+        return ans;
+        while(!q.empty())
+        {
+            int n=q.size();
+            vector<int>temp;
+            for(int i=0;i<n;i++)
+            {
+              auto it=q.front();
+              q.pop();
+              TreeNode* node = it.first;
+              int lev=it.second;
+              temp.push_back(node->val);
+              if(node->left!=nullptr)
+              q.push({node->left,lev+1});
+              if(node->right!=nullptr)
+              q.push({node->right,lev+1});
             }
-            level.push_back(temp);
+            ans.push_back(temp);
         }
-        return level;
+        return ans;
     }
 };
