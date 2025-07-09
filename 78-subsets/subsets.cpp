@@ -1,41 +1,23 @@
 class Solution {
 public:
-void f(vector<int>&nums,vector<int>&temp, vector<vector<int>>&ans,int i)
+void f(int ind,vector<int>&nums,vector<int>&temp,vector<vector<int>>&ans)
 {
-    if(i==nums.size())
+    if(ind==nums.size())
     {
         ans.push_back(temp);
         return;
     }
-    // here we exclude the input
-    f(nums,temp,ans,i+1);
-    // here we include the input
-    temp.push_back(nums[i]);
-    f(nums,temp,ans,i+1);
-    // here we backtrack
+    temp.push_back(nums[ind]);
+    f(ind+1,nums,temp,ans);
     temp.pop_back();
+
+    f(ind+1,nums,temp,ans);
 }
     vector<vector<int>> subsets(vector<int>& nums) {
         int n=nums.size();
         vector<int>temp;
         vector<vector<int>>ans;
-        // ans.push_back(temp);
-        // for(int i=0;i<n;i++)
-        // {
-        //     temp.push_back(nums[i]);
-        //     ans.push_back(temp);
-        //     for(int j=i+1;j<n;j++)
-        //     {
-        //         temp.push_back(nums[j]);
-        //         ans.push_back(temp);
-        //         temp.pop_back();
-        //     }
-
-        //     temp.clear();
-        // }
-        // return ans;
-        f(nums,temp,ans,0);
+        f(0,nums,temp,ans);
         return ans;
-        
     }
 };
