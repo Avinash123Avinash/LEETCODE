@@ -6,34 +6,37 @@
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
-        if(root==nullptr)
-        return{};
-        queue<pair<TreeNode*,int>>q;
-        map<int,int>mpp;
-        q.push({root,0});
-        while(!q.empty())
-        {
-            TreeNode* temp=q.front().first;
-            int lev=q.front().second;
-            q.pop();
-            mpp[lev]=temp->val;
-            if(temp->left!=NULL)
-            q.push({temp->left,lev+1});
-            if(temp->right!=nullptr)
-            q.push({temp->right,lev+1});
-        }
         vector<int>ans;
-        for(auto it:mpp)
-        {
-            ans.push_back(it.second);
+        if (root == nullptr)
+            return ans;
+        queue<TreeNode*> q;
+        q.push(root);
+        // map<int, int> mpp;
+        while (!q.empty()) {
+            int n = q.size();
+            TreeNode* node = nullptr;
+            for (int i = 0; i < n; i++) {
+                node=q.front();
+                q.pop();
+                if (node->left != nullptr)
+                    q.push(node->left);
+                if (node->right != nullptr)
+                    q.push(node->right);
+            }
+            ans.push_back(node->val);
         }
+
+        // for (auto it : mpp) {
+        //     ans.push_back(it.second);
+        //     cout << it.second << endl;
+        // }
         return ans;
-        
     }
 };
